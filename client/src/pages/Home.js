@@ -3,7 +3,7 @@ import { Card, Button, Grid } from "semantic-ui-react"
 import gql from "graphql-tag"
 import { useMutation } from "@apollo/react-hooks"
 
-import { REACT_APP_TMDB_KEY } from "../config"
+// import { REACT_APP_TMDB_KEY } from "../config"
 import { AuthContext } from "../context/auth"
 
 function Home() {
@@ -20,16 +20,15 @@ function Home() {
     }) 
 
     const [addtoList, { error }] = useMutation(ADD_TO_LIST, {
-        variables: values,
         update(_, result) {
             console.log(result)
-            values.title = ""
-            values.image = ""
+            // values.title = ""
+            // values.image = ""
         },
         onError(err) {
             setErrors(err.graphQLErrors[0].extensions.exception.stacktrace[0])
-        }
-        
+        },
+        variables: values
     })
 
     function submitCallback() {
@@ -39,7 +38,7 @@ function Home() {
     const onChange = (e) => {
         e.preventDefault()
         setQuery(e.target.value)
-        fetch(`https://api.themoviedb.org/3/search/movie?api_key=${REACT_APP_TMDB_KEY}&language=en-US&page=1&include_adult=false&query=${e.target.value}`)
+        fetch(`https://api.themoviedb.org/3/search/movie?api_key=bd9ae452aa29cd177266be192dbb449d&language=en-US&page=1&include_adult=false&query=${e.target.value}`)
         .then(res => res.json())
         .then(data => {
             console.log(data)

@@ -46,7 +46,7 @@ const Register = (props) => {
                     name="username"
                     value={values.username}
                     type="text"
-                    error={errors.username ? true : false}
+                    error={errors ? true : false}
                     onChange={onChange}
                 />
                 <Form.Input
@@ -55,7 +55,7 @@ const Register = (props) => {
                     name="email"
                     value={values.email}
                     type="text"
-                    error={errors.email ? true : false}
+                    error={errors ? true : false}
                     onChange={onChange}
                 />
                 <Form.Input
@@ -64,7 +64,7 @@ const Register = (props) => {
                     name="password"
                     value={values.password}
                     type="password"
-                    error={errors.password ? true : false}
+                    error={errors ? true : false}
                     onChange={onChange}
                 />
                 <Form.Input
@@ -73,7 +73,7 @@ const Register = (props) => {
                     name="confirmPassword"
                     value={values.confirmPassword}
                     type="password"
-                    error={errors.confirmPassword ? true : false}
+                    error={errors ? true : false}
                     onChange={onChange}
                 />
                 <Button type="submit" primary>

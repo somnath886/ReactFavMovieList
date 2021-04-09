@@ -46,7 +46,23 @@ module.exports = {
                 username: user.username
             })
 
+            const find = await MovieList.findOne({username: "somnath"})
+
+            console.log(find)
+
             let count = 0
+
+            if (!list) {
+                let newlist = new MovieList({
+                    username: user.username
+                })
+                newlist.movie.unshift({
+                    title,
+                    image
+                })
+                const res = await newlist.save()
+                return res
+            }
 
             list.movie.map((i) => {
                 if (i.title === title) {

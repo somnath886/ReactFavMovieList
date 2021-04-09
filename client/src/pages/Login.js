@@ -8,7 +8,9 @@ import {AuthContext} from "../context/auth"
 
 function Login(props) {
     const context = useContext(AuthContext)
-    const [errors, setErrors] = useState({});
+    const [errors, setErrors] = useState({
+        name: ""
+    });
 
     const { onChange, onSubmit, values } = useForm(loginUserCallback, {
         username: '',
@@ -21,7 +23,7 @@ function Login(props) {
         props.history.push('/');
         },
         onError(err) {
-        setErrors(err.graphQLErrors[0].extensions.exception.errors);
+        console.log(err)
         },
         variables: values
     });
@@ -40,7 +42,7 @@ function Login(props) {
             name="username"
             type="text"
             value={values.username}
-            error={errors.username ? true : false}
+            error={errors ? true : false}
             onChange={onChange}
             />
             <Form.Input
@@ -49,14 +51,14 @@ function Login(props) {
             name="password"
             type="password"
             value={values.password}
-            error={errors.password ? true : false}
+            error={errors ? true : false}
             onChange={onChange}
             />
             <Button type="submit" primary>
             Login
             </Button>
         </Form>
-        {Object.keys(errors).length > 0 && (
+        {/* {Object.keys(errors).length > 0 && (
             <div className="ui error message">
             <ul className="list">
                 {Object.values(errors).map((value) => (
@@ -64,7 +66,7 @@ function Login(props) {
                 ))}
             </ul>
             </div>
-        )}
+        )} */}
         </div>
     );
 }
